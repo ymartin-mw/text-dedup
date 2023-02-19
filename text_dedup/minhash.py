@@ -296,8 +296,7 @@ if __name__ == "__main__":
             final_data = ds.filter(
                 function=lambda record, idx: record["__cluster__"] == idx,
                 with_indices=True,
-                num_proc=os.cpu_count(),
-                desc="Filtering clusters...",
+                num_proc=os.cpu_count()
             )
 
         with timer("Saving"):

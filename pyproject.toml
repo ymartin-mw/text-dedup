@@ -8,8 +8,8 @@ readme = "README.md"
 packages = [{include = "text_dedup"}]
 
 [tool.poetry.dependencies]
-python = "^3.9,<3.12"
-numpy = "^1.23.2"
+python = "^3.8,<3.12"
+#numpy = "^1.23.2"
 tqdm = "^4.64.1"
 datasets = "^2.4.0"
 rich = "^12.5.1"
@@ -18,7 +18,7 @@ xxhash = "^3.0.0"
 pybloom-live = "^4.0.0"
 bitarray = "^2.6.2"
 dask = {extras = ["bag"], version = "^2023.1.0"}
-pyspark = "^3.3.1"
+#pyspark = "^3.3.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.1.3"

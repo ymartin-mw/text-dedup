@@ -69,13 +69,13 @@ def sha1_hash(data: bytes, d: int = 32) -> int:
 
 
 def embed_func(
-    content: str,
-    idx: int,
-    *,
-    num_perm: int,
-    ngram_size: int,
-    hashranges: List[Tuple[int, int]],
-    permutations: np.ndarray,
+        content: str,
+        idx: int,
+        *,
+        num_perm: int,
+        ngram_size: int,
+        hashranges: List[Tuple[int, int]],
+        permutations: np.ndarray,
 ) -> Dict[str, Any]:
     """
     Calculate hash values for the content.
@@ -113,10 +113,10 @@ def embed_func(
 
 
 def optimal_param(
-    threshold: float,
-    num_perm: int,
-    false_positive_weight: float = 0.5,
-    false_negative_weight: float = 0.5,
+        threshold: float,
+        num_perm: int,
+        false_positive_weight: float = 0.5,
+        false_negative_weight: float = 0.5,
 ):
     """
     Compute the optimal `MinHashLSH` parameter that minimizes the weighted sum
@@ -178,8 +178,7 @@ def optimal_param(
     return opt
 
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(
         prog="text_dedup.minhash",
         description="Deduplicate text using minhash",
@@ -248,11 +247,11 @@ if __name__ == "__main__":
 
         with timer("Clustering"):
             for i in tqdm(
-                range(0, len(embedded), args.batch_size),
-                dynamic_ncols=True,
-                desc="Iterating MinHashes...",  # noqa: E501
+                    range(0, len(embedded), args.batch_size),
+                    dynamic_ncols=True,
+                    desc="Iterating MinHashes...",  # noqa: E501
             ):
-                batch = embedded[i : i + args.batch_size]
+                batch = embedded[i: i + args.batch_size]
                 for key, Hs in zip(batch["__id__"], batch["__signatures__"]):
                     for i, H in enumerate(Hs):
                         HASH_TABLES[i][H].add(key)
@@ -312,3 +311,7 @@ if __name__ == "__main__":
 
     logger.info(f"{'Before':<{PAD}}: {len(ds)}")
     logger.info(f"{'After':<{PAD}}: {len(final_data)}")
+
+
+if __name__ == "__main__":
+    main()

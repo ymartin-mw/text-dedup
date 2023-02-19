@@ -178,7 +178,7 @@ def optimal_param(
     return opt
 
 
-def main(raw_args=None):
+def text_dedup_minhash(raw_args=None):
     parser = argparse.ArgumentParser(
         prog="text_dedup.minhash",
         description="Deduplicate text using minhash",
@@ -188,7 +188,6 @@ def main(raw_args=None):
     parser = add_meta_args(parser)
     parser = add_minhash_args(parser)
     args = parser.parse_args(raw_args)
-    print(vars(args))  # TODO DELETE
 
     mp.set_start_method("fork", force=True)
     uf = UnionFind()
@@ -315,4 +314,4 @@ def main(raw_args=None):
 
 
 if __name__ == "__main__":
-    main()
+    text_dedup_minhash()
